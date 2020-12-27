@@ -18,6 +18,12 @@ namespace SQLiteLibrary
             connection.Execute("Insert into Contacts(Name, PhoneNumber) values (@Name, @PhoneNumber)", contact);
         }
 
+        public void Remove(ContactModel contact)
+        {
+            using IDbConnection connection = new SQLiteConnection(LoadConnectionString());
+            connection.Execute("delete from Contacts where Name = @Name and PhoneNumber = @PhoneNumber", contact);
+        }
+
         public List<ContactModel> LoadContacts(string filterName = "")
         {
             using IDbConnection connection = new SQLiteConnection(LoadConnectionString());
@@ -25,7 +31,7 @@ namespace SQLiteLibrary
             var query = "select * from Contacts";
             if(string.IsNullOrWhiteSpace(filterName) == false)
             {
-                query += $" where Name = {filterName}";
+                query += $" where Name = '{filterName}'";
             }
             
             return connection.Query<ContactModel>(query).ToList();

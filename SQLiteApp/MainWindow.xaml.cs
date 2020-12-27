@@ -28,20 +28,20 @@ namespace SQLiteApp
         {
             InitializeComponent();
             _dataAccess = new SqliteDataAccess();
+            
+            RefreshListBox();
         }
 
         private void Filter_Click(object sender, RoutedEventArgs e)
         {
-            _contacts = _dataAccess.LoadContacts(FilterTextBox.Text);
+            RefreshListBox(FilterTextBox.Text);
             FilterTextBox.Text = "";
-            RefreshListBox();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var contact = new ContactModel {Name = NameTextBox.Text, PhoneNumber = PhoneNumberTextBox.Text};
             _dataAccess.AddContact(contact);
-            _contacts.Add(contact);
 
             NameTextBox.Text = "";
             PhoneNumberTextBox.Text = "";
@@ -49,11 +49,27 @@ namespace SQLiteApp
             RefreshListBox();
         }
 
-        private void RefreshListBox()
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
+            var contact = _contacts[ContactsListBox.SelectedIndex];
+            _dataAccess.Remove(contact);
+            
+            RefreshListBox();
+        }
+
+        private void LoadContacts(string filter = "")
+        {
+            _contacts = _dataAccess.LoadContacts(FilterTextBox.Text);
+        }
+
+        private void RefreshListBox(string filter = "")
+        {
+            LoadContacts(filter);
+            
             ContactsListBox.ItemsSource = null;
             ContactsListBox.ItemsSource = _contacts;
             ContactsListBox.DisplayMemberPath = "FullContact";
         }
+
     }
 }
