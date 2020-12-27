@@ -1,0 +1,22 @@
+﻿<Window x:Class="SQLiteApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SQLiteApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="FilterTextBox" HorizontalAlignment="Left" Margin="42,71,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Height="19"/>
+        <Label Content="Filter By Name" Margin="96,49,582,324"/>
+        <Button Content="Filter" HorizontalAlignment="Left" Margin="42,115,0,0" VerticalAlignment="Top" Width="236" Click="Filter_Click"/>
+        <TextBox Name="NameTextBox" HorizontalAlignment="Left" Margin="158,199,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="42,195,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label Content="Phone Number" HorizontalAlignment="Left" Margin="42,243,0,0" VerticalAlignment="Top" Width="86"/>
+        <TextBox Name="PhoneNumberTextBox" HorizontalAlignment="Left" Margin="158,256,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="42,305,0,0" VerticalAlignment="Top" Width="236" Click="AddButton_Click"/>
+        <ListBox Name="ContactsListBox" Margin="323,49,10,82"/>
+
+
+    </Grid>
+</Window>
